@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://h00vrjt3t46v"]
+
+[ext_resource type="Texture2D" uid="uid://bh11ju0xolx2t" path="res://objects/space.png" id="1_rsgie"]
+[ext_resource type="Texture2D" uid="uid://ckasf7ewabns5" path="res://objects/PNG/playerShip2_red.png" id="2_g3kon"]
+[ext_resource type="Script" path="res://Playuh.gd" id="2_hvy8k"]
+[ext_resource type="PackedScene" uid="uid://btuy57b47kqg1" path="res://bullet.tscn" id="4_gnp2q"]
+[ext_resource type="PackedScene" uid="uid://brag1xo4ata7t" path="res://enemy.tscn" id="5_uh5r5"]
+[ext_resource type="Script" path="res://Spawn.gd" id="7_7anuu"]
+[ext_resource type="Script" path="res://Gamelabel.gd" id="7_r4rtg"]
+[ext_resource type="Script" path="res://Restart.gd" id="8_tmnwd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mp5d6"]
+size = Vector2(110, 75)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjh44"]
+font_size = 25
+
+[sub_resource type="GDScript" id="GDScript_dykp3"]
+script/source = "extends Label
+
+func _process(delta):
+	self.text = \"Player Score: \" + str(State.score) + \"\\nHigh Score: \" + str(State.highscore)
+	
+	if State.gameover:
+		self.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		self.horizontal_alignment= HORIZONTAL_ALIGNMENT_CENTER
+		#self.get_theme_font_size(\"score\")
+		#self.set_size(40)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_56mh4"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_pexgf"]
+font_size = 20
+
+[node name="Main" type="Node2D"]
+position = Vector2(-2, 2)
+
+[node name="Back" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_rsgie")
+centered = false
+offset = Vector2(0, 0.145)
+metadata/_edit_lock_ = true
+
+[node name="Playuh" type="Area2D" parent="." groups=["player"]]
+position = Vector2(279, 720)
+script = ExtResource("2_hvy8k")
+bullet_tscn = ExtResource("4_gnp2q")
+metadata/_edit_group_ = true
+
+[node name="Spaceship" type="Sprite2D" parent="Playuh"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g3kon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Playuh"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_mp5d6")
+
+[node name="Enemy" parent="." instance=ExtResource("5_uh5r5")]
+
+[node name="Spawn" type="Node2D" parent="."]
+script = ExtResource("7_7anuu")
+Enemy_tscn = ExtResource("5_uh5r5")
+
+[node name="Timer" type="Timer" parent="Spawn"]
+wait_time = 0.606
+autostart = true
+
+[node name="Score" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 542.0
+offset_bottom = 794.0
+text = "High Score : 
+Player Score : 0"
+label_settings = SubResource("LabelSettings_mjh44")
+script = SubResource("GDScript_dykp3")
+
+[node name="Gamelabel" type="Label" parent="."]
+visible = false
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 546.0
+offset_bottom = 431.0
+text = "GAMEOVER 
+"
+label_settings = SubResource("LabelSettings_56mh4")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_r4rtg")
+
+[node name="Restart" type="Label" parent="."]
+visible = false
+offset_right = 540.0
+offset_bottom = 526.0
+text = "press \"Enter\" to restart"
+label_settings = SubResource("LabelSettings_pexgf")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_tmnwd")
+
+[connection signal="area_entered" from="Playuh" to="Playuh" method="_on_area_entered"]
+[connection signal="timeout" from="Spawn/Timer" to="Spawn" method="_on_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxf36wlv6uxej"]
+
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_h51jr"]
+[ext_resource type="Texture2D" uid="uid://p2w0t282csus" path="res://objects/PNG/Lasers/laserGreen13.png" id="2_xrmf5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ixqwf"]
+radius = 3.0
+height = 22.0
+
+[node name="EnemyBullet" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_h51jr")
+
+[node name="EBullet" type="Sprite2D" parent="."]
+position = Vector2(2.98023e-07, 1.07288e-06)
+scale = Vector2(0.666667, 0.594595)
+texture = ExtResource("2_xrmf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ixqwf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

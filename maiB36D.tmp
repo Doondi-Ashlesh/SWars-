@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://h00vrjt3t46v"]
+
+[ext_resource type="Texture2D" uid="uid://b1nu0gl1c5ugq" path="res://back.png" id="1_kom1d"]
+[ext_resource type="Texture2D" uid="uid://ckasf7ewabns5" path="res://objects/PNG/playerShip2_red.png" id="2_g3kon"]
+[ext_resource type="Script" path="res://Playuh.gd" id="2_hvy8k"]
+[ext_resource type="PackedScene" uid="uid://btuy57b47kqg1" path="res://bullet.tscn" id="4_gnp2q"]
+[ext_resource type="Script" path="res://Enemy.gd" id="5_r1q3e"]
+[ext_resource type="Texture2D" uid="uid://dotodvl852c6w" path="res://objects/PNG/Enemies/enemyRed2.png" id="6_4im15"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndedj"]
+size = Vector2(84, 64)
+
+[node name="Main" type="Node2D"]
+position = Vector2(-2, 2)
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(272.5, 400)
+scale = Vector2(0.352051, 0.614583)
+texture = ExtResource("1_kom1d")
+metadata/_edit_lock_ = true
+
+[node name="Playuh" type="Node2D" parent="."]
+position = Vector2(279, 720)
+script = ExtResource("2_hvy8k")
+bullet_tscn = ExtResource("4_gnp2q")
+metadata/_edit_group_ = true
+
+[node name="Spaceship" type="Sprite2D" parent="Playuh"]
+texture = ExtResource("2_g3kon")
+
+[node name="bullet" parent="." instance=ExtResource("4_gnp2q")]
+position = Vector2(279, 636)
+
+[node name="Enemy" type="Area2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("5_r1q3e")
+metadata/_edit_group_ = true
+
+[node name="ship" type="Sprite2D" parent="Enemy"]
+position = Vector2(273, 77)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_4im15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(274, 75)
+shape = SubResource("RectangleShape2D_ndedj")
