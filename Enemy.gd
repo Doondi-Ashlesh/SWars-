@@ -13,8 +13,8 @@ func _process(delta):
 #contact with bullet then enemy destryoed
 func _on_area_entered(area):
 	#print("bullet encountered") # Replace with function body.
-	self.queue_free()
-	State.score += 10
-	#if area.is_in_group("player"):
+	if area.is_in_group("player"):
+		self.queue_free()
+		State.score_increase(10)
 		
 	

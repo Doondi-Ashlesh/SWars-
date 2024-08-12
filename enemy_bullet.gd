@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var movement =200
+@export var movement =150
 
 func _process(delta):
 	position.y += movement * delta
