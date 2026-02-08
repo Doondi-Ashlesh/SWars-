@@ -21,6 +21,8 @@ Give it a try and enjoy the gameplay! Feedback and suggestions are welcome.
 
 ## Project Structure
 
+bash
+---
 SWARS/
 ├── main.tscn # Main game scene
 ├── project.godot # Godot project configuration
@@ -62,4 +64,4 @@ SWARS/
 - Open main.tscn and click Play Scene
 
 
-###ENJOY
+## ENJOY
