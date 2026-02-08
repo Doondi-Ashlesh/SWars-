@@ -21,8 +21,7 @@ Give it a try and enjoy the gameplay! Feedback and suggestions are welcome.
 
 ## Project Structure
 
-bash
----
+```bash
 SWARS/
 ├── main.tscn # Main game scene
 ├── project.godot # Godot project configuration
@@ -38,7 +37,7 @@ SWARS/
 ├── demo.ipynb # Demo or testing notebook
 ├── DockerFile.txt # Optional Docker setup
 └── ... # Additional assets and scenes
-
+```
 
 ---
 
