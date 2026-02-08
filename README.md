@@ -21,3 +21,45 @@ Give it a try and enjoy the gameplay! Feedback and suggestions are welcome.
 
 ## Project Structure
 
+SWARS/
+├── main.tscn # Main game scene
+├── project.godot # Godot project configuration
+├── Playuh.gd # Player spaceship script
+├── Enemy.gd # Enemy behavior script
+├── bullet.gd # Player bullet logic
+├── enemy_bullet.gd # Enemy bullet logic
+├── Spawn.gd # Enemy spawning system
+├── Restart.gd # Game restart logic
+├── Gamelabel.gd # UI label management
+├── back.png # Background image
+├── icon.svg # Game icon
+├── demo.ipynb # Demo or testing notebook
+├── DockerFile.txt # Optional Docker setup
+└── ... # Additional assets and scenes
+
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Godot Engine (version 3.x or 4.x recommended)
+
+- Git for cloning the repository
+
+
+
+### Installation
+
+- Clone the repository
+
+- git clone https://github.com/Doondi-Ashlesh/SWars-.git
+
+- cd SWars-
+
+- Open the project in Godot Engine
+- Open main.tscn and click Play Scene
+
+
+###ENJOY
